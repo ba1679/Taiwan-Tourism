@@ -1,0 +1,14 @@
+
+@import '~bootstrap/scss/functions';
+@import './helpers/_variables';
+@import "../node_modules/bootstrap/scss/mixins";
+@import '~bootstrap/scss/bootstrap';
+
+@import './main';
+@import './custom_bs4';
+@import './components/circle-icon';
+@import './components/city-card';
+@import './components/data-card';
+@import './components/modal';
+@import './components/interactive';
+@import './components/loading';

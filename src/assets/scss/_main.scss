@@ -1,0 +1,79 @@
+
+.subtitle-1{
+  font-size: $font-size-base*0.875;
+}
+.subtitle-2{
+  font-size: $font-size-base*0.75;
+}
+.list-style-none {
+  list-style-type: none;
+}
+
+.bg-cover {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.text-indent {
+  text-indent: 2em;
+}
+.not-allow {
+  cursor: not-allowed;
+}
+.select-icon {
+  background: #fff
+    url(~@/assets/images/arrow-down.png)
+    no-repeat right 0.75rem center;
+  background-size: 10px 10px;
+}
+.modal-backdrop{
+  backdrop-filter: blur(28px);
+  background-color: transparent;
+}
+// transition fade
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: all 0.5s linear;
+}
+
+.fade-leave-to {
+  transition: all 0.5s linear;
+  opacity: 0;
+}
+.header-bg {
+  background: #fff;
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 50%;
+    height: 20%;
+    bottom: -35px;
+    opacity: 0.5;
+    filter: blur(8px);
+    z-index: -1;
+  }
+  &::before {
+    left: 5px;
+    background: linear-gradient(
+      to top left,
+      transparent 0%,
+      transparent 30%,
+      #0d0b0c 50%,
+      #0d0b0c 100%
+    );
+  }
+  &::after {
+    right: 5px;
+    background: linear-gradient(
+      to top right,
+      transparent 0%,
+      transparent 30%,
+      #0d0b0c 50%,
+      #0d0b0c 100%
+    );
+  }
+}
