@@ -25,7 +25,7 @@ const routes = [
       {
         path: 'search/:category',
         name: 'scenicSearch',
-        component: () => import('@/views/Scenic/SearchDetail.vue')
+        component: () => import('@/views/SearchDetail.vue')
       }
     ]
   },
@@ -53,9 +53,14 @@ const routes = [
       {
         path: '/hotel/search/:category',
         name: 'hotelSearch',
-        component: () => import('@/views/Hotel/SearchDetail.vue')
+        component: () => import('@/views/SearchDetail.vue')
       }
     ]
+  },
+  {
+    path: '/develop',
+    name: 'Develop',
+    component: () => import('@/views/DevelopingPage.vue')
   }
 ]
 
