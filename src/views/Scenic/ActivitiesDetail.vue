@@ -24,13 +24,15 @@
             </div>
             <div class="d-flex flex-column ml-3 w-60 justify-content-between">
               <h6>{{ activity.Name }}</h6>
-              <p class="data-card-content text-truncate mb-1">
+              <p class="data-card-content text-truncate mb-1" v-if="!isMobile">
                 {{ activity.Description }}
               </p>
               <div class="card-footer p-0 d-flex justify-content-between">
                 <div class="d-flex align-items-center">
-                  <span class="mdi mdi-map-marker text-primary mr-2"></span>
-                  <div class="subtitle-1">{{ activity.Location }}</div>
+                  <template v-if="!isMobile">
+                    <span class="mdi mdi-map-marker text-primary mr-2"></span>
+                    <div class="subtitle-1">{{ activity.Location }}</div>
+                  </template>
                 </div>
                 <button
                   class="btn btn-outline-primary subtitle-1"
@@ -143,7 +145,7 @@
             <h3 class="h5 my-3">{{ detailData.Name }}</h3>
             <p class="subtitle-1">{{ detailData.Description }}</p>
             <div class="container">
-              <div class="row row-cols-2">
+              <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col">
                   <p
                     class="subtitle-1"
@@ -198,6 +200,7 @@ export default {
   name: 'ActivitiesDetail',
   computed: {
     ...mapGetters({
+      isMobile: 'isMobile',
       cityDatas: 'scenic/cityActivities'
     }),
     cityChName () {

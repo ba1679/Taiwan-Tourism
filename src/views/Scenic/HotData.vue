@@ -413,7 +413,7 @@
           <h3 class="h5 my-3">{{ detailData.Name }}</h3>
           <p class="subtitle-1">{{ detailData.Description }}</p>
           <div class="container">
-            <div class="row row-cols-2">
+            <div class="row row-cols-1 row-cols-lg-2">
               <div class="col">
                 <p class="subtitle-1">
                   <span
@@ -436,11 +436,17 @@
                 </p>
               </div>
               <div class="col">
-                <p>
+                <p v-if="detailData.type === 'activity'">
                   <span
                     class="mdi mdi-ticket-confirmation-outline text-primary  pr-2"
                   ></span>
                   {{ detailData.Charge ? `NT$${detailData.Charge}` : '免費' }}
+                </p>
+                <p v-else>
+                  <span
+                    class="mdi mdi-food-fork-drink text-primary  pr-2"
+                  ></span>
+                  {{ detailData.Class ? detailData.Class : '無分類' }}
                 </p>
                 <p>
                   <span class="mdi mdi-phone text-primary  pr-2"></span>
