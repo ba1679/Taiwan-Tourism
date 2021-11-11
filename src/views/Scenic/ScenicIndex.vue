@@ -2,19 +2,19 @@
   <div class="scenic-spot">
     <div class="container-fluid header-bg position-relative py-3">
       <div class="scenic-spot-bg" :class="headerBg">
-        <div class="container w-50 text-white">
-          <h2 class="h1 font-weight-bold">
+        <div class="container w-50 text-white" :class="{ 'w-100': isMobile }">
+          <h2 class="h1 font-weight-bold" :class="{ 'text-center': isMobile }">
             Welcome to <span class="text-primary">Taiwan°</span>
           </h2>
           <p class="subtitle-1 text-left">
-            台北、台中、台南、屏東、宜蘭……遊遍台灣
+            臺北、臺中、臺南、屏東、宜蘭……遊遍臺灣
           </p>
           <div class="d-flex align-items-center">
             <input
               type="text"
               class="form-control"
-              placeholder="請輸入想去的縣市"
-              aria-label="請輸入想去的縣市"
+              placeholder="請輸入想去的縣市 例: 臺中市"
+              aria-label="請輸入想去的縣市 例: 臺中市"
               v-model="searchInput"
               @keyup.enter="searchData"
             />
@@ -22,6 +22,7 @@
               type="button"
               class="btn btn-primary ml-2"
               @click="searchData"
+              :disabled="!searchInput"
             >
               <span class="mdi mdi-24px mdi-search-web"></span>
             </button>
@@ -31,11 +32,10 @@
               <select
                 class="custom-select select-icon mr-1"
                 v-model="categorySelect"
-                @change="toCityDetail"
               >
                 <option disabled>類別</option>
                 <option selected value="scenicSpot">景點</option>
-                <option value="activities">活動</option>
+                <option value="activity">活動</option>
               </select>
               <select class="custom-select select-icon" v-model="citySelect">
                 <option selected value="all">不分縣市</option>
@@ -62,13 +62,16 @@
 
 <script>
 import cities from '@/assets/cities.json'
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 const nowHour = new Date().getHours()
 
 export default {
   name: 'ScenicSpot',
   computed: {
+    ...mapGetters({
+      isMobile: 'isMobile'
+    }),
     citiesName () {
       const citiesOptions = []
       cities.forEach(item => {
