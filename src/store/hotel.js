@@ -120,7 +120,7 @@ export default {
     getCityCatering ({ commit }, city) {
       return axios
         .get(
-          `${process.env.VUE_APP_APIPATH}/Tourism/Restaurant/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=20&$format=JSON`,
+          `${process.env.VUE_APP_APIPATH}Tourism/Restaurant/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=20&$format=JSON`,
           {
             headers: getAuthorizationHeader()
           }
@@ -137,7 +137,7 @@ export default {
     getCityHotel ({ commit }, city) {
       return axios
         .get(
-          `${process.env.VUE_APP_APIPATH}/Tourism/Hotel/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=10&$format=JSON`,
+          `${process.env.VUE_APP_APIPATH}Tourism/Hotel/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=10&$format=JSON`,
           {
             headers: getAuthorizationHeader()
           }
@@ -154,12 +154,13 @@ export default {
     searchCityCatering ({ commit }, city) {
       return axios
         .get(
-          `${process.env.VUE_APP_APIPATH}/Tourism/Restaurant?$filter=contains(City, '${city}')&$format=JSON`,
+          `${process.env.VUE_APP_APIPATH}Tourism/Restaurant?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$top=20&$format=JSON`,
           {
             headers: getAuthorizationHeader()
           }
         )
         .then(res => {
+          console.log(res.data)
           commit('SET_SEARCH_CATERING', res.data)
           return res
         })
@@ -171,7 +172,7 @@ export default {
     searchCityHotels ({ commit }, city) {
       return axios
         .get(
-          `${process.env.VUE_APP_APIPATH}/Tourism/Hotel?$filter=contains(City, '${city}')&$format=JSON`,
+          `${process.env.VUE_APP_APIPATH}Tourism/Hotel?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$format=JSON`,
           {
             headers: getAuthorizationHeader()
           }

@@ -151,10 +151,10 @@ export default {
           return Promise.reject(errText)
         })
     },
-    searchCityScenicSpot ({ dispatch, commit }, city) {
+    searchCityScenicSpot ({ commit }, city) {
       return axios
         .get(
-          `${process.env.VUE_APP_APIPATH}Tourism/ScenicSpot?$filter=contains(City, '${city}')&$format=JSON`,
+          `${process.env.VUE_APP_APIPATH}Tourism/ScenicSpot?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$format=JSON`,
           {
             headers: getAuthorizationHeader()
           }
@@ -168,10 +168,10 @@ export default {
           return Promise.reject(errText)
         })
     },
-    searchCityActivities ({ dispatch, commit }, city) {
+    searchCityActivities ({ commit }, city) {
       return axios
         .get(
-          `${process.env.VUE_APP_APIPATH}Tourism/Activity?$filter=contains(City, '${city}')&$format=JSON`,
+          `${process.env.VUE_APP_APIPATH}Tourism/Activity?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$format=JSON`,
           {
             headers: getAuthorizationHeader()
           }
