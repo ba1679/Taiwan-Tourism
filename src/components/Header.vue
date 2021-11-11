@@ -3,7 +3,7 @@
     class="navbar navbar-expand-lg sticky-top align-items-baseline navbar-light bg-white px-lg-5"
   >
     <h1 class="text-hide">
-      <router-link class="logo navbar-brand" :to="{ name: 'ScenicIndex' }">
+      <router-link class="logo navbar-brand" :to="{ name: 'Hot' }">
         <img
           class="img-fluid"
           :src="require('@/assets/images/logo.jpg')"
@@ -31,7 +31,7 @@
           ></span>
           <router-link
             class="nav-link subtitle-1 text-primary"
-            :to="{ name: 'ScenicIndex' }"
+            :to="{ name: 'Hot' }"
           >
             台灣景點
           </router-link>

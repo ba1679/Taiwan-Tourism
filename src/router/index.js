@@ -5,10 +5,9 @@ const routes = [
     path: '/',
     name: 'ScenicIndex',
     component: () => import('@/views/Scenic/ScenicIndex.vue'),
-    redirect: '/hot',
     children: [
       {
-        path: 'hot',
+        path: '',
         name: 'Hot',
         component: () => import('@/views/Scenic/HotData.vue')
       },
