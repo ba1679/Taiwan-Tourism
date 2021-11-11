@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5" v-if="cityDatas.length">
     <h3 class="h5">
       <span class="mdi mdi-triangle text-primary mr-2"></span>
       {{ cityChName.CityName }}
@@ -69,7 +69,7 @@
         <div class="modal-content" v-if="detailData">
           <button
             type="button"
-            class="custom-close btn btn-primary"
+            class="custom-close btn btn-primary "
             aria-label="關閉"
             @click="closeModal"
           >
@@ -128,7 +128,7 @@
             <h3 class="h5 my-3">{{ detailData.Name }}</h3>
             <p class="subtitle-1">{{ detailData.Description }}</p>
             <div class="container">
-              <div class="row row-cols-2">
+              <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col">
                   <p
                     class="subtitle-1"
@@ -172,6 +172,7 @@
       </div>
     </div>
   </div>
+  <NoData v-else />
 </template>
 <script>
 import cities from '@/assets/cities.json'
@@ -183,6 +184,7 @@ export default {
   name: 'ScenicSpotDetail',
   computed: {
     ...mapGetters({
+      isMobile: 'isMobile',
       cityDatas: 'scenic/cityScenicSpot'
     }),
     cityChName () {
