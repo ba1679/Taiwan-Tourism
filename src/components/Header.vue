@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg sticky-top align-items-baseline navbar-light bg-white px-5"
+    class="navbar navbar-expand-lg sticky-top align-items-baseline navbar-light bg-white px-lg-5"
   >
     <h1 class="text-hide">
       <router-link class="logo navbar-brand" :to="{ name: 'ScenicIndex' }">
@@ -50,7 +50,11 @@
           <span
             class="mdi mdi-circle circle-icon circle-icon-success mr-2 mr-md-0"
           ></span>
-          <a class="nav-link text-success subtitle-1" href="#">景點交通</a>
+          <router-link
+            class="nav-link text-success subtitle-1"
+            :to="{ name: 'Develop' }"
+            >景點交通</router-link
+          >
         </li>
       </ul>
     </div>
