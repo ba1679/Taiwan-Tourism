@@ -127,7 +127,7 @@
             <h3 class="h5 my-3">{{ detailData.Name }}</h3>
             <p class="subtitle-1">{{ detailData.Description }}</p>
             <div class="container">
-              <div class="row row-cols-2">
+              <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col">
                   <p class="subtitle-1">
                     <span class="mdi mdi-car-multiple text-primary pr-2"></span>
