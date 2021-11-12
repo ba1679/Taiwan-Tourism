@@ -2,16 +2,14 @@ import axios from 'axios'
 import JsSHA from 'jssha'
 
 function getAuthorizationHeader () {
-  const AppID = '68f101d6d0754763bd7971af9242e66e'
-  const AppKey = '3e0X_xPUcHABs_gOwblayzHD0tc'
   const GMTString = new Date().toGMTString()
   const ShaObj = new JsSHA('SHA-1', 'TEXT')
-  ShaObj.setHMACKey(AppKey, 'TEXT')
+  ShaObj.setHMACKey(process.env.VUE_APP_APIAPPKEY, 'TEXT')
   ShaObj.update('x-date: ' + GMTString)
   const HMAC = ShaObj.getHMAC('B64')
   const Authorization =
     'hmac username="' +
-    AppID +
+    process.env.VUE_APP_APIAPPID +
     '", algorithm="hmac-sha1", headers="x-date", signature="' +
     HMAC +
     '"'
