@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5" v-if="cityDatas.length">
     <h3 class="h5">
       <span class="mdi mdi-triangle text-primary mr-2"></span>
       {{ cityChName.CityName }}
@@ -168,6 +168,7 @@
       </div>
     </div>
   </div>
+  <NoData v-else />
 </template>
 <script>
 import cities from '@/assets/cities.json'
@@ -226,6 +227,16 @@ export default {
       $('#detailModal').modal('hide')
       this.detailData = null
       this.currentImg = 0
+    },
+    imgControl (query) {
+      if (query === 1) {
+        this.currentImg += 2
+        if (this.currentImg === Object.keys(this.detailData.Picture).length) {
+          this.currentImg = 0
+        }
+      } else if (query === -1 && this.currentImg > 0) {
+        this.currentImg -= 2
+      }
     },
     toGoogleMap () {
       const lat = this.detailData.Position.PositionLat

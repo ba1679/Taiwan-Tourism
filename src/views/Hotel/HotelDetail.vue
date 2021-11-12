@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5" v-if="cityDatas.length">
     <h3 class="h5">
       <span class="mdi mdi-triangle text-primary mr-2"></span>
       {{ cityChName.CityName }}
@@ -164,6 +164,7 @@
       </div>
     </div>
   </div>
+  <NoData v-else />
 </template>
 <script>
 import cities from '@/assets/cities.json'
