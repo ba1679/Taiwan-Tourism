@@ -236,10 +236,12 @@ export default {
     }
   },
   watch: {
-    $route: {
+    '$route.params.city': {
       immediate: true,
       handler (val) {
-        this.loadCityScenicSpot(val.params.city)
+        if (val) {
+          this.loadCityScenicSpot(val)
+        }
       }
     }
   }
