@@ -287,16 +287,20 @@
             </div>
             <div class="d-flex flex-column ml-3 w-60 justify-content-between">
               <h6>{{ activity.Name }}</h6>
-              <p class="data-card-content text-truncate mb-1">
+              <p class="data-card-content text-truncate mb-1" v-if="!isMobile">
                 {{ activity.Description }}
               </p>
-              <div class="card-footer p-0 d-flex justify-content-between">
+              <div
+                class="card-footer p-0 d-flex justify-content-between"
+                :class="{ 'flex-column': isMobile }"
+              >
                 <div class="d-flex align-items-center">
                   <span class="mdi mdi-map-marker text-primary mr-2"></span>
                   <div class="subtitle-1">{{ activity.Location }}</div>
                 </div>
                 <button
-                  class="btn btn-outline-primary subtitle-1"
+                  class="btn btn-outline-primary"
+                  :class="{ 'btn-sm': isMobile, 'subtitle-1': !isMobile }"
                   @click="toDetail(activity, 'activity')"
                 >
                   活動詳情
@@ -603,7 +607,7 @@ export default {
     top: 50%;
   }
   > .row {
-    @media (max-width: 376px) {
+    @media (max-width: 414px) {
       overflow: scroll;
       flex-wrap: nowrap;
     }

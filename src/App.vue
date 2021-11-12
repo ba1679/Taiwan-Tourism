@@ -50,7 +50,7 @@ export default {
     breakPoint: {
       immediate: true,
       handler (val) {
-        if (val <= 375) {
+        if (val <= 414) {
           this.$store.dispatch('setIsMobile', true)
         } else {
           this.$store.dispatch('setIsMobile', false)
