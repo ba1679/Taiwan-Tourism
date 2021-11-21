@@ -60,30 +60,15 @@
   </div>
 </template>
 <script>
-import cities from '@/assets/cities.json'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Accomodation',
   computed: {
     ...mapGetters({
-      isMobile: 'isMobile'
-    }),
-    citiesName () {
-      const citiesOptions = []
-      cities.forEach(item => {
-        citiesOptions.push({
-          ch: item.CityName,
-          en: item.CityEngName
-        })
-      })
-      citiesOptions.forEach(item => {
-        if (item.en.indexOf(' ') !== -1) {
-          item.en = item.en.split(' ').join('')
-        }
-      })
-      return citiesOptions
-    }
+      isMobile: 'isMobile',
+      citiesName: 'cityOptions'
+    })
   },
   data () {
     return {
