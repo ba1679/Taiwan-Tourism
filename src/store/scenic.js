@@ -1,21 +1,5 @@
 import axios from 'axios'
 
-import JsSHA from 'jssha'
-function getAuthorizationHeader () {
-  const GMTString = new Date().toGMTString()
-  const ShaObj = new JsSHA('SHA-1', 'TEXT')
-  ShaObj.setHMACKey(process.env.VUE_APP_APIAPPKEY, 'TEXT')
-  ShaObj.update('x-date: ' + GMTString)
-  const HMAC = ShaObj.getHMAC('B64')
-  const Authorization =
-    'hmac username="' +
-    process.env.VUE_APP_APIAPPID +
-    '", algorithm="hmac-sha1", headers="x-date", signature="' +
-    HMAC +
-    '"'
-  return { Authorization: Authorization, 'X-Date': GMTString }
-}
-
 export default {
   namespaced: true,
   state: {
@@ -81,107 +65,119 @@ export default {
           return Promise.reject(err)
         })
     },
-    getTopFourActivities ({ dispatch, commit }) {
-      return axios
-        .get(
-          `${process.env.VUE_APP_APIPATH}Tourism/Activity?$top=4&$skip=4&$format=JSON`,
-          {
-            headers: getAuthorizationHeader()
-          }
-        )
-        .then(res => {
-          commit('SET_HOT_ACTIVITIES', res.data)
-          return res
-        })
-        .catch(err => {
-          const errText = 'get Top Four Activities' + err
-          return Promise.reject(errText)
-        })
+    getTopFourActivities ({ dispatch, commit, rootState }) {
+      dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
+        return axios
+          .get(
+            `${process.env.VUE_APP_APIPATH}Tourism/Activity?$top=4&$skip=4&$format=JSON`,
+            {
+              headers: rootState.apiHeader
+            }
+          )
+          .then(res => {
+            commit('SET_HOT_ACTIVITIES', res.data)
+            return res
+          })
+          .catch(err => {
+            const errText = 'get Top Four Activities' + err
+            return Promise.reject(errText)
+          })
+      })
     },
-    getTopTenCatering ({ dispatch, commit }) {
-      return axios
-        .get(
-          'https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant?$orderby=SrcUpdateTime%20desc&$top=10&$format=JSON',
-          {
-            headers: getAuthorizationHeader()
-          }
-        )
-        .then(res => {
-          commit('SET_HOT_CATERING', res.data)
-          return res
-        })
-        .catch(err => {
-          const errText = 'get Top Ten Catering' + err
-          return Promise.reject(errText)
-        })
+    getTopTenCatering ({ dispatch, commit, rootState }) {
+      dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
+        return axios
+          .get(
+            'https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant?$orderby=SrcUpdateTime%20desc&$top=10&$format=JSON',
+            {
+              headers: rootState.apiHeader
+            }
+          )
+          .then(res => {
+            commit('SET_HOT_CATERING', res.data)
+            return res
+          })
+          .catch(err => {
+            const errText = 'get Top Ten Catering' + err
+            return Promise.reject(errText)
+          })
+      })
     },
-    getCityScenicSpot ({ dispatch, commit }, city) {
-      return axios
-        .get(
-          `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=20&$format=JSON`,
-          {
-            headers: getAuthorizationHeader()
-          }
-        )
-        .then(res => {
-          commit('SET_CITY_SCENICSPOT', res.data)
-          return res
-        })
-        .catch(err => {
-          const errText = 'get City ScenicSpot' + err
-          return Promise.reject(errText)
-        })
+    getCityScenicSpot ({ dispatch, commit, rootState }, city) {
+      dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
+        return axios
+          .get(
+            `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=20&$format=JSON`,
+            {
+              headers: rootState.apiHeader
+            }
+          )
+          .then(res => {
+            commit('SET_CITY_SCENICSPOT', res.data)
+            return res
+          })
+          .catch(err => {
+            const errText = 'get City ScenicSpot' + err
+            return Promise.reject(errText)
+          })
+      })
     },
-    getCityActivity ({ dispatch, commit }, city) {
-      return axios
-        .get(
-          `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=10&$format=JSON`,
-          {
-            headers: getAuthorizationHeader()
-          }
-        )
-        .then(res => {
-          commit('SET_CITY_ACTIVITIES', res.data)
-          return res
-        })
-        .catch(err => {
-          const errText = 'get City Activity' + err
-          return Promise.reject(errText)
-        })
+    getCityActivity ({ dispatch, commit, rootState }, city) {
+      dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
+        return axios
+          .get(
+            `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=10&$format=JSON`,
+            {
+              headers: rootState.apiHeader
+            }
+          )
+          .then(res => {
+            commit('SET_CITY_ACTIVITIES', res.data)
+            return res
+          })
+          .catch(err => {
+            const errText = 'get City Activity' + err
+            return Promise.reject(errText)
+          })
+      })
     },
-    searchCityScenicSpot ({ commit }, city) {
-      return axios
-        .get(
-          `${process.env.VUE_APP_APIPATH}Tourism/ScenicSpot?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$format=JSON`,
-          {
-            headers: getAuthorizationHeader()
-          }
-        )
-        .then(res => {
-          commit('SET_SEARCH_SCENICSPOT', res.data)
-          return res
-        })
-        .catch(err => {
-          const errText = 'search City ScenicSpot ' + err
-          return Promise.reject(errText)
-        })
+    searchCityScenicSpot ({ dispatch, commit, rootState }, city) {
+      dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
+        return axios
+          .get(
+            `${process.env.VUE_APP_APIPATH}Tourism/ScenicSpot?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$format=JSON`,
+            {
+              headers: rootState.apiHeader
+            }
+          )
+          .then(res => {
+            commit('SET_SEARCH_SCENICSPOT', res.data)
+            return res
+          })
+          .catch(err => {
+            const errText = 'search City ScenicSpot ' + err
+            return Promise.reject(errText)
+          })
+      })
     },
-    searchCityActivities ({ commit }, city) {
-      return axios
-        .get(
-          `${process.env.VUE_APP_APIPATH}Tourism/Activity?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$format=JSON`,
-          {
-            headers: getAuthorizationHeader()
-          }
-        )
-        .then(res => {
-          commit('SET_SEARCH_ACTIVITIES', res.data)
-          return res
-        })
-        .catch(err => {
-          const errText = 'search City Activities' + err
-          return Promise.reject(errText)
-        })
+    searchCityActivities ({ dispatch, commit, rootState }, city) {
+      dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
+        return axios
+          .get(
+            `${process.env.VUE_APP_APIPATH}Tourism/Activity?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$format=JSON`,
+            {
+              headers: rootState.apiHeader
+            }
+          )
+          .then(res => {
+            commit('SET_SEARCH_ACTIVITIES', res.data)
+            return res
+          })
+          .catch(err => {
+            const errText = 'search City Activities' + err
+            return Promise.reject(errText)
+          })
+      })
     }
   }
 }
