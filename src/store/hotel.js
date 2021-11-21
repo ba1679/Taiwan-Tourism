@@ -151,7 +151,6 @@ export default {
             }
           )
           .then(res => {
-            console.log(res.data)
             commit('SET_SEARCH_CATERING', res.data)
             return res
           })
