@@ -264,7 +264,6 @@ export default {
     },
     imgControl (query) {
       if (query === 1) {
-        console.log(Object.keys(this.detailData.Picture).length)
         this.currentImg += 2
         if (this.currentImg === Object.keys(this.detailData.Picture).length) {
           this.currentImg = 0
