@@ -9,6 +9,7 @@ Demo: https://ba1679.github.io/Taiwan-Tourism/
 ### 網頁切版:
    * HTML5、CSS3、Scss
    * bootstrap 4 格線系統、元件、utilities使用、客製 bootstrap 變數
+   * RWD 響應式顯示
 ### 前端開發&框架:
    * Vue CLI 搭配Webpack建置專案
    * Vue.js + javaScript(ES6)資料處理及渲染
