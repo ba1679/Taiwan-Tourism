@@ -133,6 +133,13 @@ export default {
       handler () {
         this.toCityDetail()
       }
+    },
+    categorySelect: {
+      handler () {
+        if (this.citySelect !== 'all') {
+          this.toCityDetail()
+        }
+      }
     }
   }
 }
