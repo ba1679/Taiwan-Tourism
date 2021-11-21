@@ -277,7 +277,9 @@ export default {
     $route: {
       immediate: true,
       handler (val) {
-        this.loadCityActivity(val.params.city)
+        if (val.params.city) {
+          this.loadCityActivity(val.params.city)
+        }
       }
     }
   }
