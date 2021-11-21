@@ -235,7 +235,9 @@ export default {
     $route: {
       immediate: true,
       handler (val) {
-        this.loadCityHotel(val.params.city)
+        if (val.params.city) {
+          this.loadCityHotel(val.params.city)
+        }
       }
     }
   }

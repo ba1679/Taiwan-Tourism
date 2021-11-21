@@ -277,7 +277,6 @@ export default {
       this.setIsLoading(true)
       this.searchCityScenicSpot(city)
         .then(() => {
-          this.cardData = this.scenicDatas
           this.setIsLoading(false)
         })
         .catch(err => {
@@ -289,7 +288,6 @@ export default {
       this.setIsLoading(true)
       this.searchCityActivities(city)
         .then(() => {
-          this.cardData = this.activitesData
           this.setIsLoading(false)
         })
         .catch(err => {
@@ -301,7 +299,6 @@ export default {
       this.setIsLoading(true)
       this.searchCityCatering(city)
         .then(() => {
-          this.cardData = this.cateringData
           this.setIsLoading(false)
         })
         .catch(err => {
@@ -312,9 +309,7 @@ export default {
     searchHotels (city) {
       this.setIsLoading(true)
       this.searchCityHotels(city)
-        .then(res => {
-          console.log(res)
-          this.cardData = this.hotelsData
+        .then(() => {
           this.setIsLoading(false)
         })
         .catch(err => {
@@ -387,6 +382,30 @@ export default {
           default:
             break
         }
+      }
+    },
+    scenicDatas: {
+      deep: true,
+      handler (val) {
+        this.cardData = val
+      }
+    },
+    activitesData: {
+      deep: true,
+      handler (val) {
+        this.cardData = val
+      }
+    },
+    hotelsData: {
+      deep: true,
+      handler (val) {
+        this.cardData = val
+      }
+    },
+    cateringData: {
+      deep: true,
+      handler (val) {
+        this.cardData = val
       }
     }
   }
