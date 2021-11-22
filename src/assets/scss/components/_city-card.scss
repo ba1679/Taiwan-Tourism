@@ -1,3 +1,11 @@
+.city-section{
+  .scroll-area{
+    @media (max-width:1024px) {
+      overflow: scroll;
+      flex-wrap: nowrap;
+    }
+  }
+}
 .city-card{
   display: block;
   width: 202px;

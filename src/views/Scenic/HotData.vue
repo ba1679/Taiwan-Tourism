@@ -22,7 +22,7 @@
         <span class="mdi mdi-triangle"></span>
       </button>
       <transition name="fade" mode="out-in">
-        <div class="row row-cols-lg-5" v-if="cityArea === 0">
+        <div class="row row-cols-lg-5 scroll-area" v-if="cityArea === 0">
           <div class="col">
             <router-link
               class="city-card"
@@ -135,7 +135,7 @@
             </router-link>
           </div>
         </div>
-        <div class="row row-cols-5" v-else>
+        <div class="row row-cols-lg-5 scroll-area" v-else>
           <div class="col">
             <router-link
               class="city-card"
