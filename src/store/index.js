@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import cities from '@/assets/cities.json'
-import JsSHA from 'jssha'
+import axios from 'axios'
+import qs from 'qs'
 // module
 import scenic from './scenic'
 import hotel from './hotel'
@@ -63,25 +64,28 @@ export default createStore({
     setIsMobile ({ commit }, isMobile) {
       commit('SET_IS_MOBILE', isMobile)
     },
-    getAuthorizationHeader ({ commit }) {
-      return new Promise(resolve => {
-        const GMTString = new Date().toGMTString()
-        const ShaObj = new JsSHA('SHA-1', 'TEXT')
-        ShaObj.setHMACKey(process.env.VUE_APP_APIAPPKEY, 'TEXT')
-        ShaObj.update('x-date: ' + GMTString)
-        const HMAC = ShaObj.getHMAC('B64')
-        const Authorization =
-          'hmac username="' +
-          process.env.VUE_APP_APIAPPID +
-          '", algorithm="hmac-sha1", headers="x-date", signature="' +
-          HMAC +
-          '"'
-        commit('SET_API_HEADER', {
-          Authorization: Authorization,
-          'X-Date': GMTString
-        })
-        resolve()
-      })
+    async getAuthorizationHeader ({ commit }) {
+      const parameter = {
+        grant_type: 'client_credentials',
+        client_id: process.env.VUE_APP_CLIENT_ID,
+        client_secret: process.env.VUE_APP_CLIENT_SECRECT
+      }
+
+      const config = {
+        method: 'post',
+        url: process.env.VUE_APP_AUTH_URL,
+        data: qs.stringify(parameter),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
+
+      try {
+        const res = await axios.request(config)
+        commit('SET_API_HEADER', { Authorization: `Bearer ${res.data.access_token}` })
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   modules: {

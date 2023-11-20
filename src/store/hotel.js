@@ -69,7 +69,7 @@ export default {
       dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
         return axios
           .get(
-            `${process.env.VUE_APP_APIPATH}Tourism/Hotel?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=10&$format=JSON`,
+            `${process.env.VUE_APP_API_DOMAIN}/v2/Tourism/Hotel?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=10&$format=JSON`,
             {
               headers: rootState.apiHeader
             }
@@ -88,7 +88,7 @@ export default {
       dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
         return axios
           .get(
-            `${process.env.VUE_APP_APIPATH}Tourism/Restaurant?$orderby=SrcUpdateTime%20desc&$top=10&$format=JSON`,
+            `${process.env.VUE_APP_API_DOMAIN}/v2/Tourism/Restaurant?$orderby=SrcUpdateTime%20desc&$top=10&$format=JSON`,
             {
               headers: rootState.apiHeader
             }
@@ -107,7 +107,7 @@ export default {
       dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
         return axios
           .get(
-            `${process.env.VUE_APP_APIPATH}Tourism/Restaurant/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=20&$format=JSON`,
+            `${process.env.VUE_APP_API_DOMAIN}/v2/Tourism/Restaurant/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=20&$format=JSON`,
             {
               headers: rootState.apiHeader
             }
@@ -126,7 +126,7 @@ export default {
       dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
         return axios
           .get(
-            `${process.env.VUE_APP_APIPATH}Tourism/Hotel/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=10&$format=JSON`,
+            `${process.env.VUE_APP_API_DOMAIN}/v2/Tourism/Hotel/${city}?$orderby=SrcUpdateTime%20desc&$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=10&$format=JSON`,
             {
               headers: rootState.apiHeader
             }
@@ -145,7 +145,7 @@ export default {
       dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
         return axios
           .get(
-            `${process.env.VUE_APP_APIPATH}Tourism/Restaurant?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$top=20&$format=JSON`,
+            `${process.env.VUE_APP_API_DOMAIN}/v2/Tourism/Restaurant?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$top=20&$format=JSON`,
             {
               headers: rootState.apiHeader
             }
@@ -164,7 +164,7 @@ export default {
       dispatch('getAuthorizationHeader', {}, { root: true }).then(() => {
         return axios
           .get(
-            `${process.env.VUE_APP_APIPATH}Tourism/Hotel?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$format=JSON`,
+            `${process.env.VUE_APP_API_DOMAIN}/v2/Tourism/Hotel?$filter=contains(City, '${city}') and Picture%2FPictureUrl1%20ne%20null%20&$format=JSON`,
             {
               headers: rootState.apiHeader
             }
