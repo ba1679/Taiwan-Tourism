@@ -1,0 +1,14 @@
+name: Deploy to GitHub pages
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  deploy:
+    uses: ba1679/vue-cli-deploy-actions/.github/workflows/deploy.yml@master
+    with:
+      api-domain: ${{ vars.VUE_APP_API_DOMAIN }}
